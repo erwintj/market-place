@@ -9,16 +9,47 @@ import {
 } from 'grommet';
 
 class PostProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '',
+      title: '',
+      reqs: ''
+    };
+  }
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const array = new Uint32Array(1);
+    const [id] = window.crypto.getRandomValues(array);
+    const project = { ...this.state, ...{ id } };
+
+    localStorage.setItem(id, JSON.stringify(project));
+  };
+
   render() {
     return (
       <>
         <Heading>Create Post</Heading>
         <Form onSubmit={this.handleSubmit}>
-          <FormField label="Project Title:" pad={true}>
-            <TextInput name="title" placeholder="A name for your project" />
+          <FormField htmlFor="title" label="Project Title:" pad={true}>
+            <TextInput
+              name="title"
+              onChange={this.handleChange}
+              placeholder="A name for your project"
+              value={this.state.title} />
           </FormField>
-          <FormField label="Project Requirements:" pad={true}>
-            <TextArea name="reqs" placeholder="List of requirements" />
+          <FormField htmlFor="reqs" label="Project Requirements:" pad={true}>
+            <TextArea
+              name="reqs"
+              onChange={this.handleChange}
+              placeholder="List of requirements"
+              value={this.state.reqs} />
           </FormField>
           <Button
             color="dark-1"
