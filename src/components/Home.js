@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
-import { Heading } from 'grommet';
+import { Box, Heading } from 'grommet';
+
+import Project from './Project';
 
 class Home extends Component {
   render() {
     return (
-      <Heading>Home</Heading>
+      <>
+        <Heading>Projects</Heading>
+        <Box justify="between">
+          {
+            Object
+              .keys(localStorage)
+              .map((key, i) => {
+                const data = JSON.parse(localStorage[key])
+
+                return <Project data={data} key={i} />;
+              })
+          }
+        </Box>
+      </>
     )
   }
 }
