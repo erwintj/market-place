@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Heading } from 'grommet';
 
 class Home extends Component {
   render() {
     return (
-      <h1>Home</h1>
+      <Heading>Home</Heading>
     )
   }
 }
