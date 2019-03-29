@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from '@reach/router';
 import {
   Button,
   Form,
@@ -30,6 +31,8 @@ class PostProject extends Component {
     const project = { ...this.state, ...{ id } };
 
     localStorage.setItem(id, JSON.stringify(project));
+
+    navigate('/');
   };
 
   render() {
