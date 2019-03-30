@@ -5,6 +5,7 @@ import {
   Form,
   FormField,
   Heading,
+  RadioButtonGroup,
   TextInput
 } from 'grommet';
 
@@ -39,16 +40,19 @@ class PlaceBid extends Component {
         <Form onSubmit={this.handleSubmit}>
           <FormField label="Bid Amount:" pad={true}>
             <TextInput
+              min="1"
               name="amount"
               onChange={this.handleChange}
               placeholder="$100"
+              step="any"
+              type="number"
               value={this.state.amount} />
           </FormField>
           <FormField label="Billing Type:" pad={true}>
-            <TextInput
+            <RadioButtonGroup
               name="type"
               onChange={this.handleChange}
-              placeholder="hourly"
+              options={['fixed', 'hourly']}
               value={this.state.type} />
           </FormField>
           <Button
