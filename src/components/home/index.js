@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Box, Heading } from 'grommet';
 
-import Project from './Project';
+import Project from '../project';
 
 class Home extends Component {
   render() {

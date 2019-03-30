@@ -3,10 +3,10 @@ import './App.css';
 
 import { Grommet } from 'grommet';
 
-import Home from './components/Home';
-import Nav from './components/Nav';
-import PlaceBid from './components/PlaceBid';
-import PostProject from './components/PostProject';
+import Home from './components/home';
+import Nav from './components/nav';
+import PlaceBid from './components/place-bid';
+import PostProject from './components/post-project';
 
 import { Router } from "@reach/router"
 
@@ -31,7 +31,7 @@ class App extends Component {
           <Router>
             <Home path="/" />
             <PostProject path="/post-project" />
-            <PlaceBid path="/place-bid" />
+            <PlaceBid path="/place-bid/:id" />
           </Router>
         </div>
       </Grommet>
