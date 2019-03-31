@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import { Box, Heading, Text } from 'grommet';
+import { Box, Text } from 'grommet';
 
 const Project = ({ data: { amount, id, reqs, title, type } }) => {
   return (
@@ -9,7 +9,7 @@ const Project = ({ data: { amount, id, reqs, title, type } }) => {
       margin="small"
       pad="small"
       style={{ borderRadius: '4px' }}>
-      <Heading>{title}</Heading>
+      <h1>{title}</h1>
       <Text>Requirements: {reqs}</Text>
       {amount ? <Text>Current Bid: ${amount} ({type})</Text> : null}
       <Link to={`/place-bid/${id}`}>Place Bid</Link>

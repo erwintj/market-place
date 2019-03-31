@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Router } from "@reach/router"
+import { Box, Grid, Grommet } from 'grommet';
 
-import { Grommet } from 'grommet';
+import './App.css';
 
 import Home from './components/home';
 import Nav from './components/nav';
 import PlaceBid from './components/place-bid';
 import PostProject from './components/post-project';
-
-import { Router } from "@reach/router"
 
 const theme = {
   global: {
@@ -26,14 +25,26 @@ class App extends Component {
   render() {
     return (
       <Grommet theme={theme}>
-        <div className="App">
+        <Grid
+          fill
+          rows={["auto", "flex"]}
+          columns={["auto", "flex"]}
+          areas={[
+            { name: "header", start: [0, 0], end: [1, 0] },
+            { name: "main", start: [1, 1], end: [1, 1] }
+          ]}
+        >
           <Nav />
-          <Router>
-            <Home path="/" />
-            <PostProject path="/post-project" />
-            <PlaceBid path="/place-bid/:id" />
-          </Router>
-        </div>
+          <Box gridArea="main" align="center">
+            <div className="App">
+              <Router primary={false}>
+                <Home path="/" />
+                <PostProject path="/post-project" />
+                <PlaceBid path="/place-bid/:id" />
+              </Router>
+            </div>
+          </Box>
+        </Grid>
       </Grommet>
     );
   }
