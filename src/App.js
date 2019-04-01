@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Router } from "@reach/router"
+import { connect } from 'react-redux';
+import { Router } from "@reach/router";
 import { Box, Grid, Grommet } from 'grommet';
 
 import './App.css';
@@ -52,4 +53,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isAuthenticated: state.isAuthenticated
+});
+
+export default connect(mapStateToProps)(App);

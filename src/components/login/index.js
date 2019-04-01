@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { navigate } from '@reach/router';
 import {
   Button,
@@ -6,6 +7,18 @@ import {
   FormField,
   TextInput
 } from 'grommet';
+
+import { setAuthToken } from '../../state/auth/actions';
+
+const mapDispatchToProps = dispatch => ({
+  handleLogin(formData) {
+    dispatch(setAuthToken(formData))
+  }
+});
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
 class Login extends Component {
   constructor(props) {
@@ -23,8 +36,7 @@ class Login extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const encodedCredentials = btoa(this.state);
-    localStorage.setItem('token', JSON.stringify(encodedCredentials));
+    this.props.handleLogin(this.state);
 
     navigate('/');
   };
@@ -61,4 +73,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
