@@ -5,6 +5,7 @@ import { Box, Grid, Grommet } from 'grommet';
 import './App.css';
 
 import Home from './components/home';
+import Login from './components/login';
 import Nav from './components/nav';
 import PlaceBid from './components/place-bid';
 import PostProject from './components/post-project';
@@ -39,6 +40,7 @@ class App extends Component {
             <div className="App">
               <Router primary={false}>
                 <Home path="/" />
+                <Login path="/login" />
                 <PostProject path="/post-project" />
                 <PlaceBid path="/place-bid/:id" />
               </Router>
