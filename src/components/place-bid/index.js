@@ -27,7 +27,17 @@ class PlaceBid extends Component {
 
     const currentProject = JSON.parse(localStorage.getItem(this.props.id));
 
-    if (currentProject.amount && this.state.amount < currentProject.amount) {
+    let amount;
+
+    if (this.state.type === 'hourly') {
+      amount = this.state.amount * currentProject.hours;
+    }
+
+    if (this.state.type === 'fixed') {
+      amount = this.state.amount;
+    }
+
+    if (currentProject.amount && amount < currentProject.amount) {
       this.placeBid(currentProject);
     } else if (!currentProject.amount) {
       this.placeBid(currentProject);
