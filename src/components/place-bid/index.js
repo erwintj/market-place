@@ -26,11 +26,20 @@ class PlaceBid extends Component {
     e.preventDefault();
 
     const currentProject = JSON.parse(localStorage.getItem(this.props.id));
-    const test = { ...currentProject, ...this.state };
 
-    localStorage.setItem(this.props.id, JSON.stringify(test));
+    if (currentProject.amount && this.state.amount < currentProject.amount) {
+      this.placeBid(currentProject);
+    } else if (!currentProject.amount) {
+      this.placeBid(currentProject);
+    }
 
     navigate('/');
+  }
+
+  placeBid = project => {
+    const projectWithBid = { ...project, ...this.state };
+
+    localStorage.setItem(this.props.id, JSON.stringify(projectWithBid));
   }
 
   render() {
