@@ -15,7 +15,8 @@ class PostProject extends Component {
     this.state = {
       id: '',
       title: '',
-      reqs: ''
+      reqs: '',
+      hours: 0
     };
   }
 
@@ -53,6 +54,13 @@ class PostProject extends Component {
               onChange={this.handleChange}
               placeholder="List of requirements"
               value={this.state.reqs} />
+          </FormField>
+          <FormField htmlFor="hours" label="Estimated Number of Hours:" pad={true}>
+            <TextInput
+              name="hours"
+              onChange={this.handleChange}
+              type="number"
+              value={this.state.hours} />
           </FormField>
           <Button
             color="dark-1"

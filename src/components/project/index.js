@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 import { Box, Text } from 'grommet';
 
-const Project = ({ data: { amount, id, reqs, title, type } }) => {
+const Project = ({ data: { amount, id, reqs, title, type, hours } }) => {
   return (
     <Box
       border={{ color: 'light-3', size: 'xsmall' }}
@@ -11,7 +11,8 @@ const Project = ({ data: { amount, id, reqs, title, type } }) => {
       style={{ borderRadius: '4px' }}>
       <h1>{title}</h1>
       <Text>Requirements: {reqs}</Text>
-      {amount ? <Text>Current Bid: ${amount} ({type})</Text> : null}
+      <Text>Time to complete: {hours} hours</Text>
+      {amount && <Text>Current Bid: ${amount}{(type === 'hourly' && '/hr')}</Text>}
       <Link to={`/place-bid/${id}`}>Place Bid</Link>
     </Box>
   );
