@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import {
   Button,
+  Calendar,
   Form,
   FormField,
   Heading,
   TextArea,
   TextInput
 } from 'grommet';
+import moment from 'moment';
 
 class PostProject extends Component {
   constructor(props) {
@@ -16,7 +18,8 @@ class PostProject extends Component {
       id: '',
       title: '',
       reqs: '',
-      hours: 0
+      hours: 0,
+      expiration: ''
     };
   }
 
@@ -34,6 +37,10 @@ class PostProject extends Component {
     localStorage.setItem(id, JSON.stringify(project));
 
     navigate('/');
+  };
+
+  onSelect = date => {
+    this.setState({ expiration: date })
   };
 
   render() {
@@ -61,6 +68,16 @@ class PostProject extends Component {
               onChange={this.handleChange}
               type="number"
               value={this.state.hours} />
+          </FormField>
+          <FormField htmlFor="expiration" label="Expiration Date:" pad={true}>
+            <Calendar
+              date={this.state.expiration}
+              daysOfWeek
+              name="expiration"
+              onSelect={this.onSelect}
+              size="small"
+              bounds={[moment().add(1, 'days'), moment().add(30, 'days')]}
+            />
           </FormField>
           <Button
             color="dark-1"
