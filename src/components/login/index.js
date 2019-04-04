@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { navigate } from '@reach/router';
+import { Redirect } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -37,38 +37,39 @@ class Login extends Component {
     e.preventDefault();
 
     this.props.handleLogin(this.state);
-
-    navigate('/');
   };
 
   render() {
     return (
-      <>
-        <Form onSubmit={this.handleSubmit}>
-          <FormField htmlFor="username" label="Username:" pad={true}>
-            <TextInput
-              name="username"
-              onChange={this.handleChange}
-              placeholder="seller@gmail.com"
-              type="value"
-              value={this.state.username} />
-          </FormField>
-          <FormField htmlFor="password" label="password:" pad={true}>
-            <TextInput
-              name="password"
-              onChange={this.handleChange}
-              placeholder="password"
-              type="password"
-              value={this.state.password} />
-          </FormField>
-          <Button
-            color="dark-1"
-            label="LOG IN"
-            primary
-            type="submit">
-          </Button>
-        </Form>
-      </>
+      this.props.isAuthenticated ? <Redirect to="/home" /> :
+        (
+          <>
+            <Form onSubmit={this.handleSubmit}>
+              <FormField htmlFor="username" label="Username:" pad={true}>
+                <TextInput
+                  name="username"
+                  onChange={this.handleChange}
+                  placeholder="seller@gmail.com"
+                  type="value"
+                  value={this.state.username} />
+              </FormField>
+              <FormField htmlFor="password" label="password:" pad={true}>
+                <TextInput
+                  name="password"
+                  onChange={this.handleChange}
+                  placeholder="password"
+                  type="password"
+                  value={this.state.password} />
+              </FormField>
+              <Button
+                color="dark-1"
+                label="LOG IN"
+                primary
+                type="submit">
+              </Button>
+            </Form>
+          </>
+        )
     );
   }
 }

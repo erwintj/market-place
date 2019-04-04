@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
 import {
   Button,
   Calendar,
@@ -38,7 +37,7 @@ class PostProject extends Component {
 
     localStorage.setItem(id, JSON.stringify(project));
 
-    navigate('/');
+    this.props.history.push('/home');
   };
 
   onSelect = date => {

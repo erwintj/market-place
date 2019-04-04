@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
 import {
   Button,
   Form,
@@ -25,7 +24,7 @@ class PlaceBid extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const currentProject = JSON.parse(localStorage.getItem(this.props.id));
+    const currentProject = JSON.parse(localStorage.getItem(this.props.match.params.id));
 
     let amount;
 
@@ -43,7 +42,7 @@ class PlaceBid extends Component {
       this.placeBid(currentProject);
     }
 
-    navigate('/');
+    this.props.history.push('/home');
   }
 
   placeBid = project => {

@@ -1,38 +1,40 @@
-import React, { Component } from 'react';
-import { navigate } from '@reach/router';
+import React from 'react';
 import { Box, Button, Text } from 'grommet';
 
-class Nav extends Component {
-
-  render() {
-    return (
-      <>
-        <Box style={{
-          backgroundColor: '#ffffff',
-          position: 'fixed',
-          top: 0,
-          width: '100%'
-        }}
-          gridArea="header"
-          align="center"
-          direction="row"
-          pad={{ horizontal: "medium", vertical: "small" }}
-        >
-          <h1>Self-Employed Market Place</h1>
-          <Button onClick={() => navigate('/')}>
-            <Box pad={{ horizontal: "medium", vertical: "small" }}>
-              <Text>Home</Text>
-            </Box>
-          </Button>
-          <Button onClick={() => navigate('/post-project')}>
-            <Box pad={{ horizontal: "medium", vertical: "small" }}>
-              <Text>Post Project</Text>
-            </Box>
-          </Button>
-        </Box>
-      </>
-    );
-  }
-}
+const Nav = props => (
+  <Box style={{
+    backgroundColor: '#ffffff',
+    position: 'fixed',
+    top: 0,
+    width: '100%'
+  }}
+    gridArea="header"
+    align="center"
+    direction="row"
+    pad={{ horizontal: "medium", vertical: "small" }}
+  >
+    <h1>Self-Employed Market Place</h1>
+    {
+      props.isAuthenticated &&
+      <div>
+        <Button onClick={() => props.history.push('/home')}>
+          <Box pad={{ horizontal: "medium", vertical: "small" }}>
+            <Text>Home</Text>
+          </Box>
+        </Button>
+        <Button onClick={() => props.history.push('/post-project')}>
+          <Box pad={{ horizontal: "medium", vertical: "small" }}>
+            <Text>Post Project</Text>
+          </Box>
+        </Button>
+        <Button onClick={props.doLogout}>
+          <Box pad={{ horizontal: "medium", vertical: "small" }}>
+            <Text>Logout</Text>
+          </Box>
+        </Button>
+      </div>
+    }
+  </Box>
+);
 
 export default Nav;

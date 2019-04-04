@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 import { Box, Text } from 'grommet';
 import moment from 'moment';
 
