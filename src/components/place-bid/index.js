@@ -21,34 +21,47 @@ class PlaceBid extends Component {
     this.setState({ [e.target.name]: e.target.value })
   };
 
+  calculateBid = (type, hours, amount) => {
+    switch (type) {
+      case 'hourly':
+        return hours * amount;
+      case 'fixed':
+        return amount;
+      default:
+        return amount;
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
     const currentProject = JSON.parse(localStorage.getItem(this.props.match.params.id));
 
-    let amount;
+    if (currentProject && currentProject.amount) {
+      const { amount, type } = this.state;
+      const bid = this.calculateBid(type, currentProject.hours, amount);
+      const currentBid = this.calculateBid(currentProject.type, currentProject.hours, currentProject.amount);
 
-    if (this.state.type === 'hourly') {
-      amount = this.state.amount * currentProject.hours;
-    }
+      if (bid < currentBid) {
+        const project = { ...currentProject, ...{ amount: bid } };
 
-    if (this.state.type === 'fixed') {
-      amount = this.state.amount;
-    }
+        this.placeBid(project);
+      }
+    } else if (currentProject) {
+      const { amount, type } = this.state;
+      const bid = this.calculateBid(type, currentProject.hours, amount);
+      const project = { ...currentProject, ...{ amount: bid } };
 
-    if (currentProject.amount && amount < currentProject.amount) {
-      this.placeBid(currentProject);
-    } else if (!currentProject.amount) {
-      this.placeBid(currentProject);
+      this.placeBid(project);
     }
 
     this.props.history.push('/home');
   }
 
-  placeBid = project => {
+  placeBid = (project) => {
     const projectWithBid = { ...project, ...this.state };
 
-    localStorage.setItem(this.props.id, JSON.stringify(projectWithBid));
+    localStorage.setItem(this.props.match.params.id, JSON.stringify(projectWithBid));
   }
 
   render() {
@@ -74,7 +87,7 @@ class PlaceBid extends Component {
               value={this.state.type} />
           </FormField>
           <Button
-            color="dark-1"
+            color="neutral-2"
             label="PLACE BID"
             primary
             type="submit">
