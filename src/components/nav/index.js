@@ -3,7 +3,6 @@ import { Box, Button, Text } from 'grommet';
 
 const Nav = props => (
   <Box style={{
-    backgroundColor: '#ffffff',
     position: 'fixed',
     top: 0,
     width: '100%'
@@ -11,6 +10,7 @@ const Nav = props => (
     gridArea="header"
     align="center"
     direction="row"
+    background="neutral-2"
     pad={{ horizontal: "medium", vertical: "small" }}
   >
     <h1>Self-Employed Market Place</h1>

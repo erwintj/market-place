@@ -62,7 +62,7 @@ class Login extends Component {
                   value={this.state.password} />
               </FormField>
               <Button
-                color="dark-1"
+                color="neutral-2"
                 label="LOG IN"
                 primary
                 type="submit">

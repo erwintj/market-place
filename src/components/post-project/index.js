@@ -84,7 +84,7 @@ class PostProject extends Component {
             />
           </FormField>
           <Button
-            color="dark-1"
+            color="neutral-2"
             label="CREATE POST"
             primary
             type="submit">

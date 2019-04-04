@@ -39,9 +39,9 @@ class App extends Component {
           ]}
         >
           <Box gridArea="main" align="center">
+            <Nav {...this.props} />
             <div className="App">
               <>
-                <Nav {...this.props} />
                 {
                   this.props.isAuthenticated && (
                     <>

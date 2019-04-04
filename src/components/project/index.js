@@ -15,7 +15,11 @@ const Project = ({ data: { amount, id, reqs, title, type, hours, expiration } })
       <Text>Time to complete: {hours} hours</Text>
       {amount && <Text>Current Bid: ${amount}{(type === 'hourly' && '/hr')}</Text>}
       <Text>{moment(expiration).calendar()}</Text>
-      <Link to={`/place-bid/${id}`}>Place Bid</Link>
+      <Link
+        to={`/place-bid/${id}`}
+        style={{ color: '#3D138D' }}>
+        Place Bid
+      </Link>
     </Box>
   );
 };
