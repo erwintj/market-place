@@ -32,7 +32,9 @@ class PostProject extends Component {
 
     const array = new Uint32Array(1);
     const [id] = window.crypto.getRandomValues(array);
-    const project = { ...this.state, ...{ id } };
+    const date = new Date();
+    const timestamp = date.toISOString();
+    const project = { ...this.state, ...{ id }, ...{ timestamp } };
 
     localStorage.setItem(id, JSON.stringify(project));
 
@@ -76,7 +78,10 @@ class PostProject extends Component {
               name="expiration"
               onSelect={this.onSelect}
               size="small"
-              bounds={[moment().add(1, 'days'), moment().add(30, 'days')]}
+              bounds={[
+                `${moment().add(1, 'days')}`,
+                `${moment().add(30, 'days')}`
+              ]}
             />
           </FormField>
           <Button
