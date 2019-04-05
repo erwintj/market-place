@@ -50,7 +50,7 @@ class PlaceBid extends Component {
         this.dispatchBid(project);
       }
     }
-    else if (currentProject && !currentProject.amount) {
+    else if (currentProject) {
       const { amount, type } = this.state;
       const bid = this.calculateBid(type, currentProject.hours, amount);
       const project = { ...currentProject, ...{ amount: bid } };
@@ -61,11 +61,8 @@ class PlaceBid extends Component {
     this.props.history.push('/home');
   }
 
-  dispatchBid = (project) => {
-    const projectWithBid = { ...project, ...this.state };
-    this.props.dispatch(
-      placeBid(projectWithBid, this.props.match.params.id)
-    );
+  dispatchBid = () => {
+    this.props.dispatch(placeBid(this.state, this.props.match.params.id))
   }
 
   render() {

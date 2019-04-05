@@ -17,7 +17,7 @@ export default (state = [], action) => {
       ];
     case PLACE_BID:
       const { bid, buyer } = action;
-      return state.map(project => (project.id === action.id) ? ({ ...project, ...bid, ...{ buyer } }) : state);
+      return state.map(project => (project.id === action.id) ? ({ ...project, ...bid, ...{ buyer } }) : project);
     default:
       return state;
   }
