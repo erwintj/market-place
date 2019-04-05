@@ -8,8 +8,6 @@ export const addProject = project => ({
 });
 
 export const placeBid = (bid, id) => {
-  console.log(bid);
-  console.log(id);
   return ({
     type: PLACE_BID,
     bid,
