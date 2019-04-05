@@ -5,7 +5,8 @@ const Nav = props => (
   <Box style={{
     position: 'fixed',
     top: 0,
-    width: '100%'
+    width: '100%',
+    zIndex: 2
   }}
     gridArea="header"
     align="center"
