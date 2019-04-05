@@ -27,11 +27,14 @@ const Project = ({
       <Text>Expires: {expirationDate} @ {expirationTime}</Text>
       {
         (seller !== sessionStorage.getItem('username')) &&
-        <Link
-          to={`/place-bid/${id}`}
-          style={{ color: '#3D138D' }}>
-          Place Bid
-        </Link>
+        <>
+          <Text>Seller: {seller}</Text>
+          <Link
+            to={`/place-bid/${id}`}
+            style={{ color: '#3D138D' }}>
+            Place Bid
+          </Link>
+        </>
       }
     </Box>
   );
