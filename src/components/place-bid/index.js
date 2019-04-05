@@ -8,6 +8,9 @@ import {
   TextInput
 } from 'grommet';
 
+import { connect } from 'react-redux';
+import { placeBid } from '../../state/projects/actions';
+
 class PlaceBid extends Component {
   constructor(props) {
     super(props);
@@ -34,8 +37,7 @@ class PlaceBid extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const currentProject = JSON.parse(localStorage.getItem(this.props.match.params.id));
+    const currentProject = this.props.projects.find(project => project.id === this.props.match.params.id);
 
     if (currentProject && currentProject.amount) {
       const { amount, type } = this.state;
@@ -45,23 +47,22 @@ class PlaceBid extends Component {
       if (bid < currentBid) {
         const project = { ...currentProject, ...{ amount: bid } };
 
-        this.placeBid(project);
+        this.dispatchBid(project);
       }
-    } else if (currentProject) {
+    }
+    else if (currentProject) {
       const { amount, type } = this.state;
       const bid = this.calculateBid(type, currentProject.hours, amount);
       const project = { ...currentProject, ...{ amount: bid } };
 
-      this.placeBid(project);
+      this.dispatchBid(project);
     }
 
     this.props.history.push('/home');
   }
 
-  placeBid = (project) => {
-    const projectWithBid = { ...project, ...this.state };
-
-    localStorage.setItem(this.props.match.params.id, JSON.stringify(projectWithBid));
+  dispatchBid = () => {
+    this.props.dispatch(placeBid(this.state, this.props.match.params.id))
   }
 
   render() {
@@ -98,4 +99,8 @@ class PlaceBid extends Component {
   }
 }
 
-export default PlaceBid;
+const mapStateToProps = state => ({
+  projects: state.projects
+});
+
+export default connect(mapStateToProps)(PlaceBid);
