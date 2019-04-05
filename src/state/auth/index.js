@@ -1,7 +1,8 @@
 import { LOGOUT, SET_AUTH_TOKEN } from './actions';
 
 const initialState = {
-  isAuthenticated: !!localStorage.getItem('token')
+  isAuthenticated: !!sessionStorage.getItem('token'),
+  username: sessionStorage.getItem('username')
 };
 
 export default (state = initialState, action) => {

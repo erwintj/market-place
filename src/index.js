@@ -5,7 +5,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './state/store';
+import configureStore from './state/configureStore';
+
+const store = configureStore();
+
 
 ReactDOM.render(
   <Provider store={store}>
