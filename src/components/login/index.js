@@ -23,10 +23,7 @@ const mapStateToProps = state => ({
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
+    this.state = { username: '' };
   }
 
   handleChange = e => {
@@ -52,14 +49,6 @@ class Login extends Component {
                   placeholder="seller@gmail.com"
                   type="value"
                   value={this.state.username} />
-              </FormField>
-              <FormField htmlFor="password" label="password:" pad={true}>
-                <TextInput
-                  name="password"
-                  onChange={this.handleChange}
-                  placeholder="password"
-                  type="password"
-                  value={this.state.password} />
               </FormField>
               <Button
                 color="neutral-2"
