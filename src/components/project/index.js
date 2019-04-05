@@ -5,6 +5,7 @@ import { Box, Text } from 'grommet';
 const Project = ({
   data: {
     amount,
+    buyer,
     id,
     reqs,
     title,
@@ -23,7 +24,7 @@ const Project = ({
       <h1>{title}</h1>
       <Text>Requirements: {reqs}</Text>
       <Text>Time to complete: {hours} hours</Text>
-      {amount && <Text>Current Bid: ${amount}{(type === 'hourly' && '/hr')}</Text>}
+      {amount && <Text>Current Bid: ${amount}{(type === 'hourly' && '/hr')}{buyer && <Text> ({buyer})</Text>}</Text>}
       <Text>Expires: {expirationDate} @ {expirationTime}</Text>
       {
         (seller !== sessionStorage.getItem('username')) &&
